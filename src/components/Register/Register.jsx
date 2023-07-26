@@ -50,7 +50,7 @@ const handleRegister=(event)=>{
       displayName: name
     }).then(() => {
       setError('');
-      setSuccess('User has been registered successfully!Now please login')
+      setSuccess('User has been registered successfully!Now please login to continue.')
       fetch('http://localhost:5000/adduser',{
         method: 'POST',
                             headers: {
