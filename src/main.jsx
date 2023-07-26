@@ -11,6 +11,8 @@ import Register from './components/Register/Register';
 import Login from './components/Login/Login';
 import AddTask from './components/Manager/AddTask/AddTask';
 import AllTasks from './components/Manager/AllTasks/AllTasks';
+import Mytasks from './components/Employee/Mytasks';
+import TaskDetails from './components/Employee/TaskDetails';
 
 const router = createBrowserRouter([
   {
@@ -31,7 +33,13 @@ const router = createBrowserRouter([
         loader:()=>fetch('http://localhost:5000/alltasks')
       },
       {
-        
+        path:'/mytasks',
+        element:<Mytasks></Mytasks>
+      },
+      {
+        path:'/taskdetails/:id',
+        element:<TaskDetails></TaskDetails>,
+        loader:({params})=>fetch(`http://localhost:5000/taskdetails/${params.id}`)
       }
      
     ]
