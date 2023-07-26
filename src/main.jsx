@@ -10,6 +10,7 @@ import AuthenticationProvider from './components/Providers/AuthenticationProvide
 import Register from './components/Register/Register';
 import Login from './components/Login/Login';
 import AddTask from './components/Manager/AddTask/AddTask';
+import AllTasks from './components/Manager/AllTasks/AllTasks';
 
 const router = createBrowserRouter([
   {
@@ -23,6 +24,14 @@ const router = createBrowserRouter([
       {
         path:'/addtask',
         element:<AddTask></AddTask>
+      },
+      {
+        path:'/alltasks',
+        element:<AllTasks></AllTasks>,
+        loader:()=>fetch('http://localhost:5000/alltasks')
+      },
+      {
+        
       }
      
     ]

@@ -41,6 +41,7 @@ const Sidenav = () => {
         
         <Link to='/'>Home</Link>
         <Link to='/addtask'>Add Task</Link>
+        <Link to='/alltasks'>All Tasks</Link>
         <Link to='/logout' onClick={handleLogout}>Logout</Link>
       </>
     );

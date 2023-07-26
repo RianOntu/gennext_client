@@ -21,14 +21,14 @@ const AddTask = () => {
 
       console.log(selectedValue);
      fetch(`http://localhost:5000/addtask?email=${encodeURIComponent(assignee)}`,{
-        method:'PATCH',
+        method:'POST',
         headers:{
             'content-type':'application/json'
         },
-        body:JSON.stringify({task_name,task_desc,due_date,assignee})
+        body:JSON.stringify({task_name,task_desc,due_date,assignee,status:'In Progress'})
 
      }).then(res=>res.json()).then(data => {
-        if (data.modifiedCount) {
+        if (data.insertedId) {
             form.reset();
           notify();
             
