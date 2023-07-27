@@ -1,8 +1,23 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
+import { AuthenticationContext } from '../Providers/AuthenticationProvider';
 
 const TaskDetails = () => {
     const mytask=useLoaderData();
+    const {user}=useContext(AuthenticationContext);
+    const [commentArr, setCommentArr] = useState([]);
+  const handleComment=(event)=>{
+    event.preventDefault();
+    const form=event.target;
+    const name=user?.displayName;
+    const comment=form.comment.value;
+
+   
+    const commentObj={name,comment};
+    setCommentArr((prevComments) => [...prevComments, commentObj]);
+    form.reset();
+  }
+
    
     return (
         <div className='container mt-5'>
@@ -11,6 +26,19 @@ const TaskDetails = () => {
                 <p>Due Date : {task.due_date}</p>
                 <p>Task Description : {task.task_desc}</p></>)
             }
+            {
+                commentArr.map(comment=><><h4><b>{comment.name}</b></h4><p>{comment.comment}</p></>)
+            }
+
+           <form className='w-50' onSubmit={handleComment}>
+             <label htmlFor="">Your Name:</label>
+             <input type="text" name="" id="" readOnly value={user?.displayName} /><br />
+             <label htmlFor="">Your Comment:</label><br />
+             <textarea name="comment" id="" cols="30" rows="10" placeholder='Enter your comment'></textarea><br />
+              <input type="submit" value="Submit" className='btn btn-primary w-100' />
+
+
+           </form>
             
         </div>
     );
