@@ -1,8 +1,11 @@
 import React, { useContext, useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
 import { AuthenticationContext } from '../Providers/AuthenticationProvider';
+import moment from 'moment';
+import './TaskDetails.css';
 
 const TaskDetails = () => {
+    const currentDate = moment().format('YYYY-MM-DD');
     const mytask=useLoaderData();
     const {user}=useContext(AuthenticationContext);
     const [commentArr, setCommentArr] = useState([]);
@@ -13,21 +16,21 @@ const TaskDetails = () => {
     const comment=form.comment.value;
 
    
-    const commentObj={name,comment};
+    const commentObj={name,comment,date:currentDate};
     setCommentArr((prevComments) => [...prevComments, commentObj]);
     form.reset();
   }
 
    
     return (
-        <div className='container mt-5'>
+        <div className='container'>
             {
                 mytask.map(task=><><h3>Task Name : {task.task_name}</h3>
                 <p>Due Date : {task.due_date}</p>
                 <p>Task Description : {task.task_desc}</p></>)
             }
             {
-                commentArr.map(comment=><><h4><b>{comment.name}</b></h4><p>{comment.comment}</p></>)
+                commentArr.map(comment=><><h4><b>{comment.name}</b></h4><p>{comment.date}</p><p>{comment.comment}</p></>)
             }
 
            <form className='w-50' onSubmit={handleComment}>
