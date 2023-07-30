@@ -20,7 +20,7 @@ const AddTask = () => {
       const assignee=selectedValue;
 
       console.log(selectedValue);
-     fetch(`http://localhost:5000/addtask?email=${encodeURIComponent(assignee)}`,{
+     fetch(`https://server-nine-olive.vercel.app/addtask?email=${encodeURIComponent(assignee)}`,{
         method:'POST',
         headers:{
             'content-type':'application/json'
@@ -39,7 +39,7 @@ const AddTask = () => {
 
     }
     useEffect(()=>{
-           fetch('http://localhost:5000/allusers')
+           fetch('https://server-nine-olive.vercel.app/allusers')
            .then(res=>res.json())
            .then(data=>setAllusers(data))
     },[])

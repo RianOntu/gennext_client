@@ -7,10 +7,10 @@ const DashboardLayout = () => {
     return (
         <div>
         <div className="row">
-            <div className="w-25 h-100">
+            <div className="sidenav h-100">
                 <Sidenav></Sidenav>
             </div>
-            <div className="w-75 h-100">
+            <div className="outlet h-100">
                 <Outlet></Outlet>
             </div>
         </div>

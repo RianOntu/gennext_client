@@ -51,7 +51,7 @@ const handleRegister=(event)=>{
     }).then(() => {
       setError('');
       setSuccess('User has been registered successfully!Now please login to continue.')
-      fetch('http://localhost:5000/adduser',{
+      fetch('https://server-nine-olive.vercel.app/adduser',{
         method: 'POST',
                             headers: {
                                 'content-type': 'application/json'

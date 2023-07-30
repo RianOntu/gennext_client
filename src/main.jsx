@@ -13,11 +13,12 @@ import AddTask from './components/Manager/AddTask/AddTask';
 import AllTasks from './components/Manager/AllTasks/AllTasks';
 import Mytasks from './components/Employee/Mytasks';
 import TaskDetails from './components/Employee/TaskDetails';
+import PrivateRoute from './components/PrivateRoute/PrivateRoute';
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <DashboardLayout></DashboardLayout>,
+    element:<PrivateRoute><DashboardLayout></DashboardLayout></PrivateRoute> ,
     children:[
       {
         path:'/',
@@ -30,7 +31,7 @@ const router = createBrowserRouter([
       {
         path:'/alltasks',
         element:<AllTasks></AllTasks>,
-        loader:()=>fetch('http://localhost:5000/alltasks')
+        loader:()=>fetch('https://server-nine-olive.vercel.app/alltasks')
       },
       {
         path:'/mytasks',
@@ -39,7 +40,7 @@ const router = createBrowserRouter([
       {
         path:'/taskdetails/:id',
         element:<TaskDetails></TaskDetails>,
-        loader:({params})=>fetch(`http://localhost:5000/taskdetails/${params.id}`)
+        loader:({params})=>fetch(`https://server-nine-olive.vercel.app/taskdetails/${params.id}`)
       }
      
     ]

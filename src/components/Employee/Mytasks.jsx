@@ -22,7 +22,7 @@ const Mytasks = () => {
       [id]: selectedStatus,
     }));
 
-    fetch(`http://localhost:5000/updatestatus/${id}`, {
+    fetch(`https://server-nine-olive.vercel.app/updatestatus/${id}`, {
       method: 'PATCH',
       headers: {
         'content-type': 'application/json',
@@ -38,7 +38,7 @@ const Mytasks = () => {
   };
 
   const fetchTasks = () => {
-    fetch(`http://localhost:5000/mytasks?email=${user?.email}`)
+    fetch(`https://server-nine-olive.vercel.app/mytasks?email=${user?.email}`)
       .then(res => res.json())
       .then(data => {
         setMytasks(data);
@@ -74,11 +74,11 @@ const Mytasks = () => {
 
   useEffect(() => {
     if (sortOrder === 'asc') {
-      fetch(`http://localhost:5000/mytasks?email=${user?.email}&status=asc`)
+      fetch(`https://server-nine-olive.vercel.app/mytasks?email=${user?.email}&status=asc`)
         .then(res => res.json())
         .then(data => setMytasks(data));
     } else if (sortOrder === 'desc') {
-      fetch(`http://localhost:5000/mytasks?email=${user?.email}&status=desc`)
+      fetch(`https://server-nine-olive.vercel.app/mytasks?email=${user?.email}&status=desc`)
         .then(res => res.json())
         .then(data => setMytasks(data));
     }
@@ -92,7 +92,7 @@ const Mytasks = () => {
         <p className='text-center text-danger'>No task yet</p>
       ) : (
         <div className='row row-cols-1 row-cols-md-2 row-cols-lg-2 g-4'>
-          <div className='border div1 mt-5'>
+          <div className=' div1 mt-5'>
             <h4>
               <b>Sort by due date:</b>
             </h4>
@@ -111,7 +111,7 @@ const Mytasks = () => {
               </button>
             </div>
           </div>
-          <div className='border div1 mt-5'>
+          <div className=' div1 mt-5'>
             <h4>
               <b>Sort by work completion:</b>
             </h4>

@@ -6,3 +6,9 @@
     height:700px;
     width: 100%;
 }
+@media only screen and (max-width: 576px){
+
+    .formpage{
+        width: 100%!important;
+    }
+}

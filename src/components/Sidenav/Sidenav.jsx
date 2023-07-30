@@ -13,7 +13,7 @@ const Sidenav = () => {
   
   useEffect(() => {
     if (user) {
-      fetch(`http://localhost:5000/userrole?email=${user.email}`)
+      fetch(`https://server-nine-olive.vercel.app/userrole?email=${user.email}`)
         .then(res => res.json())
         .then(data => setRole(data[0].role))
         .catch(error => {
