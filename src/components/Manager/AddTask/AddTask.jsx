@@ -7,8 +7,12 @@ const AddTask = () => {
     const [allusers,setAllusers]=useState([]);
     const [Employees,setEmployess]=useState([]);
     const [selectedValue, setSelectedValue] = useState('');
+    const [selectedValue1, setSelectedValue1] = useState('');
     const handleSelectChange = (event) => {
         setSelectedValue(event.target.value);
+      };
+      const handleSelectChange1 = (event) => {
+        setSelectedValue1(event.target.value);
       };
       
     const handleAddTask=(event)=>{
@@ -18,6 +22,7 @@ const AddTask = () => {
       const task_desc=form.task_desc.value;
       const due_date=form.due_date.value;
       const assignee=selectedValue;
+      const priority=selectedValue1;
 
       console.log(selectedValue);
      fetch(`https://server-nine-olive.vercel.app/addtask?email=${encodeURIComponent(assignee)}`,{
@@ -25,7 +30,7 @@ const AddTask = () => {
         headers:{
             'content-type':'application/json'
         },
-        body:JSON.stringify({task_name,task_desc,due_date,assignee,status:'In Progress'})
+        body:JSON.stringify({task_name,task_desc,due_date,assignee,priority,status:'In Progress'})
 
      }).then(res=>res.json()).then(data => {
         if (data.insertedId) {
@@ -80,6 +85,17 @@ const AddTask = () => {
   
   
 </select>
+<div>
+    <br />
+    <label htmlFor="">Select Task Priority:</label>
+  <select className="form-select" aria-label="Default select example" value={selectedValue1} onChange={handleSelectChange1}>
+  <option value="">Select Task Priority </option>
+<option value="High">High</option>
+<option value="Medium">Medium</option>
+<option value="Low">Low</option>
+  
+</select>
+  </div>
   </div>
   <br />
 <input className='btn btn-primary w-100' type="submit" value="Add Task" />

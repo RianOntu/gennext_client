@@ -50,6 +50,22 @@ const Mytasks = () => {
     fetchTasks();
   }, []);
 
+  const handleHigh=()=>{
+    const highs=originalTasks.filter(task=>task.priority=="High");
+    setMytasks(highs)
+  }
+  const handleMedium=()=>{
+    const mediums=originalTasks.filter(task=>task.priority=="Medium");
+    setMytasks(mediums)
+  }
+  const handleLow=()=>{
+    const lows=originalTasks.filter(task=>task.priority=="Low");
+    setMytasks(lows)
+  }
+  const handleAllPriority=()=>{
+    setMytasks(originalTasks);
+  }
+
   const handleWorking = () => {
     const workings = originalTasks.filter(task => task.status === 'Working');
     setMytasks(workings);
@@ -91,7 +107,7 @@ const Mytasks = () => {
       {mytasks.length === 0 ? (
         <p className='text-center text-danger'>No task yet</p>
       ) : (
-        <div className='row row-cols-1 row-cols-md-2 row-cols-lg-2 g-4'>
+        <div className='row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4'>
           <div className=' div1 mt-5'>
             <h4>
               <b>Sort by due date:</b>
@@ -133,6 +149,37 @@ const Mytasks = () => {
               </button>
             </div>
           </div>
+          <div className=' div1 mt-5'>
+            <h4>
+              <b>Filter by task priority</b>
+            </h4>
+            <div className='d-flex'>
+              <button
+                className='btn btn-primary btn-sm mr-2'
+                onClick={handleHigh}
+              >
+                High
+              </button>
+              <button
+                className='btn btn-primary btn-sm mr-2'
+                onClick={handleMedium}
+              >
+                Medium
+              </button>
+              <button
+                className='btn btn-primary btn-sm mr-2'
+                onClick={handleLow}
+              >
+                Low
+              </button>
+              <button
+                className='btn btn-primary btn-sm'
+                onClick={handleAllPriority}
+              >
+                All
+              </button>
+            </div>
+          </div>
         </div>
       )}
       {mytasks.length > 0 && (
@@ -140,6 +187,8 @@ const Mytasks = () => {
           <thead>
             <tr>
               <th scope='col'>Task Name</th>
+              <th scope='col'>Task Priority</th>
+
               <th scope='col'>Due Date</th>
               <th scope='col'>Assignee</th>
               <th scope='col'>Status</th>
@@ -150,6 +199,7 @@ const Mytasks = () => {
             {mytasks.map(task => (
               <tr key={task._id}>
                 <td>{task.task_name}</td>
+                <td>{task.priority}</td>
                 <td>{task.due_date}</td>
                 <td>{task.assignee}</td>
                 <td>
